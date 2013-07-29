@@ -1,0 +1,15 @@
+Requirements:
+-A web server with PHP installed
+-Users must have the .NET Framework installed
+
+==Client==
+1. Edit Config.cs to put in the name of your game's directory, the name of the binary, and the URL to the update script on your website. serverName isn't required and launching servers from the updater hasn't been tested anyway.
+2. Customize update_background.gif and put it on UpdaterDialog.resx (you might have to use Visual Studio for this.)
+3. Compile the program and distribute it with your installer. Be sure to include Ionic.Zlib.dll and Ionic.Zip.dll.
+
+Note: It is recommended that you add code to your game that opens an exclusive lock on %GameDirectory%/lock while the game is running, since this will prevent the updater from trying to update the game while it is running. Also, saving configuration files or other user data in %GameDirectory%/bin is not recommended since they will be overwritten if included in an update, and the updater will delete the bin folder if there is an installation problem (missing executable or version file.)
+
+==Server==
+1. Upload the update folder to the URL that you set in part 1.
+2. Make sure the cache folder can be written to by the web server (chmod 777).
+3. Put all of your game files in /bin/. When you release an update, change the necessary files and increment the number in version.txt. The files generated in /cache/ can be deleted at any time, and should be when you update since the old files will no longer be used.
