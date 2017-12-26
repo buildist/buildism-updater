@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
+﻿using System.Threading;
 using System.Windows.Forms;
 
 namespace Updater
@@ -25,26 +21,26 @@ namespace Updater
             while (true)
             {
                 UpdaterStatus status = Updater.GetStatus();
-				switch(status.status)
-				{
-					case -1:
-						MessageBox.Show("An error occured while starting the game. Details on the problem have been saved to error.log.");
-						return;
-					break;
-					case 1:
-						if (d == null)
-						{
-							d = new UpdaterDialog();
-							d.Show();
-						}
-						d.progress.Value = (int)(100 * status.progress);
-					break;
-					case 2:
-						if (d != null)
-							d.Hide();
-						return;
-					break;
-				}
+                switch (status.status)
+                {
+                    case -1:
+                        MessageBox.Show("An error occured while starting the game. Details on the problem have been saved to error.log.");
+                        return;
+                        break;
+                    case 1:
+                        if (d == null)
+                        {
+                            d = new UpdaterDialog();
+                            d.Show();
+                        }
+                        d.progress.Value = (int)(100 * status.progress);
+                        break;
+                    case 2:
+                        if (d != null)
+                            d.Hide();
+                        return;
+                        break;
+                }
                 Thread.Sleep(100);
             }
         }

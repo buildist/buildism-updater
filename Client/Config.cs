@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
 
 namespace Updater
 {
     class Config
     {
-		public const string GameDirectoryName = "MyGame";
+        public const string GameDirectoryName = "MyGame";
         public static string GetGameDirectory()
         {
             string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), GameDirectoryName);

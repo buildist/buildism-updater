@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
 using System.IO;
 using System.Net;
 using System.Security.Cryptography;
@@ -168,13 +166,13 @@ namespace Updater
             try
             {
                 client = new WebClient();
-                client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(delegate(object sender, DownloadProgressChangedEventArgs e)
+                client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(delegate (object sender, DownloadProgressChangedEventArgs e)
                     {
-                        progress = (float) e.ProgressPercentage/100;
+                        progress = (float)e.ProgressPercentage / 100;
                     });
                 if (request == "")
                     request = "_";
-                client.DownloadFileCompleted += new AsyncCompletedEventHandler(delegate(object sender, AsyncCompletedEventArgs e)
+                client.DownloadFileCompleted += new AsyncCompletedEventHandler(delegate (object sender, AsyncCompletedEventArgs e)
                     {
                         try
                         {
@@ -246,8 +244,8 @@ namespace Updater
                 r.Method = "POST";
                 r.Credentials = CredentialCache.DefaultCredentials;
                 r.Timeout = 5000;
-                ASCIIEncoding encoding = new ASCIIEncoding ();
-                byte[] bytes = encoding.GetBytes (arguments);
+                ASCIIEncoding encoding = new ASCIIEncoding();
+                byte[] bytes = encoding.GetBytes(arguments);
                 Stream request = r.GetRequestStream();
                 r.ContentLength = bytes.Length;
                 request.Write(bytes, 0, bytes.Length);
